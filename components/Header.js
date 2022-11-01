@@ -4,7 +4,6 @@ import {
   useDisconnect,
   useAccount,
   useBalance,
-  useProvider,
   useNetwork,
 } from "wagmi";
 import { useEffect, useState } from "react";
@@ -19,7 +18,6 @@ function abbreviateAddress(address) {
 
 export function Header() {
   // wagmi hooks
-  const provider = useProvider();
   const { chain } = useNetwork();
   const { address, isConnecting, isConnected } = useAccount();
   const ethBalance = useBalance({
