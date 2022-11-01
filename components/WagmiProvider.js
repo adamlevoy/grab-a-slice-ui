@@ -16,18 +16,18 @@ const { chains, provider, webSocketProvider } = configureChains(
     chain.mainnet,
   ],
   [
-    // jsonRpcProvider({
-    //   rpc: (chain) => {
-    //     if (chain.id == 31337 || chain.id === 1337) {
-    //       return { http: "http://127.0.0.1:8545" };
-    //     } else {
-    //       return null;
-    //     }
-    //   },
-    // }),
-    // alchemyProvider({
-    //   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
-    // }),
+    jsonRpcProvider({
+      rpc: (chain) => {
+        if (chain.id == 31337 || chain.id === 1337) {
+          return { http: "http://127.0.0.1:8545" };
+        } else {
+          return null;
+        }
+      },
+    }),
+    alchemyProvider({
+      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
+    }),
     publicProvider(),
   ]
 );
