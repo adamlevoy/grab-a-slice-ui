@@ -106,19 +106,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="flex flex-col items-center justify-between h-full">
+      <main className="flex flex-col items-center justify-between h-full px-2">
         <h1 className="text-6xl mb-8 font-black">Grab a Slice</h1>
         {isConnected ? (
-          <Form
-            slice={slice}
-            setSlice={setSlice}
-            addTopping={addTopping}
-            handleSubmit={handleSubmit}
-          />
+          <>
+            <Form
+              slice={slice}
+              setSlice={setSlice}
+              addTopping={addTopping}
+              handleSubmit={handleSubmit}
+            />
+            <SliceGallery />
+          </>
         ) : (
           <ConnectModal />
         )}
-        <SliceGallery />
       </main>
 
       <footer className="w-full flex flex-col items-center justify-center py-2">

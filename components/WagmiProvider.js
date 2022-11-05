@@ -8,31 +8,27 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
 const { chains, provider, webSocketProvider } = configureChains(
+  [chain.polygonMumbai, chain.hardhat],
   [
-    chain.hardhat,
-    chain.localhost,
-    chain.polygonMumbai,
-    chain.goerli,
-    chain.mainnet,
-  ],
-  [
+    // for local development
     jsonRpcProvider({
       rpc: (chain) => {
         if (chain.id == 31337 || chain.id === 1337) {
           return { http: "http://127.0.0.1:8545" };
         } else {
-          return null;
+          return { http: chain.rpcUrls.default };
         }
       },
     }),
-    // alchemyProvider({
-    //   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
-    // }),
     publicProvider(),
+    alchemyProvider({
+      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
+    }),
   ]
 );
 
 const client = createClient({
+  autoConnect: false,
   connectors: [
     new MetaMaskConnector({ chains }),
     new CoinbaseWalletConnector({

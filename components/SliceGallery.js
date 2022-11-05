@@ -23,25 +23,41 @@ export function SliceGallery() {
     watch: true,
   });
 
-  useEffect(() => {
-    getSlices;
-  }, [getSlices]);
+  // useEffect(() => {
+  //   slices
+  // }, [getSlices]);
+
+  function formatTimestamp(timestamp) {
+    const date = new Date(timestamp * 1000);
+    const formatted = date.toLocaleString("en-us");
+    return formatted;
+  }
 
   return (
-    <div className="flex justify-center items-center flex-wrap-reverse gap-8 mt-8 mb-8">
+    <div className="flex justify-center items-center flex-wrap-reverse gap-8 mt-8 mb-8 w-full">
       {slices
         ? slices.map((slice, i) => {
             return (
-              <div key={i} className="relative rounded-xl shadow-2xl p-4">
-                <div className="w-20 absolute z-0 opacity-50 right-0 bottom-2">
+              <div
+                key={i}
+                className="relative rounded-2xl shadow-2xl p-4 overflow-hidden border-4 border-orange-500/50 bg-yellow-100 text-red-600"
+              >
+                <div className="w-20 absolute z-0 opacity-50 right-1 bottom-3">
                   <Logo />
                 </div>
                 <ul className="relative z-10">
-                  <li>From: {slice[0]}</li>
-                  <li>Timestamp:</li>
-                  <li>Crust: {slice[2]}</li>
+                  <li className="truncate">
+                    <span className="font-bold mr-1">From:</span> {slice[0]}
+                  </li>
                   <li>
-                    Toppings:{" "}
+                    <span className="font-bold mr-1">Timestamp:</span>{" "}
+                    {formatTimestamp(slice[1])}
+                  </li>
+                  <li>
+                    <span className="font-bold mr-1">Crust:</span> {slice[2]}
+                  </li>
+                  <li>
+                    <span className="font-bold mr-1">Toppings:</span>{" "}
                     {slice[3].map((topping, i) => {
                       return (
                         <span className="mr-2" key={i}>
@@ -50,10 +66,18 @@ export function SliceGallery() {
                       );
                     })}
                   </li>
-                  <li>Sauce: {slice[4]}</li>
-                  <li>Cheese: {slice[5]}</li>
-                  <li>Name: {slice[6]}</li>
-                  <li>Message: {slice[7]}</li>
+                  <li>
+                    <span className="font-bold mr-1">Sauce:</span> {slice[4]}
+                  </li>
+                  <li>
+                    <span className="font-bold mr-1">Cheese:</span> {slice[5]}
+                  </li>
+                  <li>
+                    <span className="font-bold mr-1">Name:</span> {slice[6]}
+                  </li>
+                  <li>
+                    <span className="font-bold mr-1">Message:</span> {slice[7]}
+                  </li>
                 </ul>
               </div>
             );
