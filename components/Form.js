@@ -121,7 +121,7 @@ export function Form({ slice, setSlice, addTopping, handleSubmit, chain }) {
           </div>
           <div className="flex items-center">
             <select
-              className="w-full"
+              className="w-full text-gray-900"
               name="sauce"
               id="sauce"
               required
@@ -141,7 +141,7 @@ export function Form({ slice, setSlice, addTopping, handleSubmit, chain }) {
           </div>
           <div className="flex items-center">
             <select
-              className="w-full"
+              className="w-full text-gray-900"
               name="Cheese"
               id="Cheese"
               required
