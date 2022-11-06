@@ -4,6 +4,7 @@ import { Form } from "../components/Form";
 import { Logo } from "../components/Logo";
 import {
   useAccount,
+  useNetwork,
   usePrepareContractWrite,
   useContractWrite,
   useContractEvent,
@@ -27,6 +28,7 @@ export default function Home() {
 
   // wagmi hooks
   const { isConnected } = useAccount();
+  const { chain } = useNetwork();
   const {
     data: contract,
     config,
@@ -111,6 +113,7 @@ export default function Home() {
         {isConnected ? (
           <>
             <Form
+              chain={chain}
               slice={slice}
               setSlice={setSlice}
               addTopping={addTopping}

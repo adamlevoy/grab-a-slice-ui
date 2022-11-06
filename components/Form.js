@@ -1,4 +1,6 @@
-export function Form({ slice, setSlice, addTopping, handleSubmit }) {
+import { chain } from "wagmi";
+
+export function Form({ slice, setSlice, addTopping, handleSubmit, chain }) {
   return (
     <>
       <form
@@ -183,12 +185,19 @@ export function Form({ slice, setSlice, addTopping, handleSubmit }) {
           </div>
         </div>
         <button
-          className="bg-red-500 rounded-xl py-3 px-4 inline-flex mt-4 w-full text-center justify-center text-white font-semibold shadow"
+          className="bg-red-500 rounded-xl py-3 px-4 inline-flex mt-4 w-full text-center justify-center text-white font-semibold shadow disabled:bg-red-200"
           type="submit"
           form="form"
+          disabled={chain.id != 80001}
         >
           Grab Slice
         </button>
+        {chain.id != 80001 ? (
+          <span className="font-bold text-red-500 mt-4">
+            Must connect to network Polygon Mumbai!
+          </span>
+        ) : null}
+        {console.log(chain.id)}
       </form>
     </>
   );
